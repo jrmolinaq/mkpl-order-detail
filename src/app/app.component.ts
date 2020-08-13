@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-
-import LiferayParams from '../types/LiferayParams'
+import { Component, OnInit } from '@angular/core';
 
 declare const Liferay: any;
 
@@ -9,22 +7,25 @@ declare const Liferay: any;
 		Liferay.ThemeDisplay.getPathContext() + 
 		'/o/mkpl-order-detail/app/app.component.html'
 })
-export class AppComponent {
-	params: LiferayParams;
-	labels: any;
+export class AppComponent implements OnInit {
+	orderId: string;
 
-	constructor() {
-		this.labels = {        
-			
-			configuration: Liferay.Language.get('configuration'),
-			
-			portletNamespace: Liferay.Language.get('portlet-namespace'),
-        	contextPath: Liferay.Language.get('context-path'),
-			portletElementId: Liferay.Language.get('portlet-element-id'),
+	constructor() {}
+
+	ngOnInit(): void {
+		console.log("***** " + this.getURLParameter("id"));
+		this.orderId = this.getURLParameter("id");
+	}
+
+	private getURLParameter(paramName: string){
+		var pageURL = window.location.search.substring(1);
+		var variables = pageURL.split('&');
+		for (var i = 0; i < variables.length; i++) {
+			var param = variables[i].split('=');
+			if (param[0] == paramName) {
+				return param[1];
+			}
 		}
-	}
+	}​
 
-	get configurationJSON() {
-		return JSON.stringify(this.params.configuration, null, 2);
-	}
 }
