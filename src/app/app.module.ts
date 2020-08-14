@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
+import { FormatDatePipe } from './pipes/format-date.pipe';
+
 @NgModule({
-	imports: [BrowserModule],
-	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpClientModule,
+		ReactiveFormsModule
+	],
+	declarations: [
+		AppComponent,
+		FormatDatePipe
+	],
 	entryComponents: [AppComponent],
 	bootstrap: [], // Don't bootstrap any component statically (see ngDoBootstrap() below)
-	providers: [],
+	providers: [FormatDatePipe],
 })
 export class AppModule {
 	// Avoid bootstraping any component statically because we need to attach to

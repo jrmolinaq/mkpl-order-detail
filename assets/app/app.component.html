@@ -1,5 +1,127 @@
-<div>
-	<h1>
-		{{orderId}}
-	</h1>
+<div class="screen-container">
+	<div class="column start">
+	  <!-- TODO se cambio el botón por error de routers
+	  <button *ngIf="canToBack" class="bold m-bottom-7 row middle" [routerLink]="['/order']">
+		<span class="icon icon-long-left-arrow back-arrow deep-sea-green"></span>
+		<span class="poppins text-big deep-sea-green bold m-left-2">Volver</span>
+	  </button>
+	  -->
+	  <a class="text-big poppins bold deep-sea-green m-bottom-6 row middle link-simple" href="/order">
+		<i class="icon icon-long-left-arrow deep-sea-green title-medium m-right-1"></i>
+		Volver
+	  </a>
+	  <h3 class="title-small bold deep-sea-green m-bottom-9">
+		Detalle del pedido
+	  </h3>
+	</div>
+	<div *ngIf="orderInfo">
+	  <div class="info-container m-bottom-9">
+		<div class="column info-card">
+		  <span class="card-title">Informacion del aviso</span>
+		  <span class="title-medium bold tiber m-bottom-2">
+			# {{ orderInfo.noticeNumber }}
+		  </span>
+		  <span class="text-small bold gothic m-bottom-7">
+			Fecha del aviso {{ orderInfo.noticeDate | formatDate: 'd/M/yyyy' }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Sucursal:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.subsidiaryName}}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Placa vehículo:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.plate }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Marca:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.brand }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Modelo:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.line }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			VIN:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.vin }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Taller de entrega:
+		  </span>
+		  <span class="text-medium deep-sea-green m-bottom-2 info-row">
+			{{ orderInfo.workshopName }}
+		  </span>
+		  <span class="text-medium bold hoki m-bottom-2">
+			Tipo de cobertura:
+		  </span>
+		  <span class="text-medium deep-sea-green">
+			{{ orderInfo.coverage }}
+		  </span>
+		</div>
+		<div class="column">
+		  <div class="column info-card m-bottom-4">
+			<div class="row space-between">
+			  <span class="card-title">ID pedido</span>
+			  <span class="text-normal row middle center deep-sea-green chip info"
+				[ngClass]="orderStates[orderInfo.status]?.class">{{ orderStates[orderInfo.status]?.text }}</span>
+			</div>
+			<span class="title-medium bold tiber m-bottom-2">{{ orderInfo.id }}</span>
+			<span class="text-small bold gothic">Fecha del pedido
+			  {{ orderInfo.orderDate | formatDate: 'd/M/yyyy' }}</span>
+		  </div>
+		  <div class="column info-card item-1">
+			<span class="card-title">Taller de entrega</span>
+			<span class="title-medium bold tiber m-bottom-2">
+			  {{ orderInfo.workshopName }}
+			</span>
+			<span class="text-small bold gothic m-bottom-7">
+			  {{ orderInfo.city }}
+			</span>
+			<span class="text-medium bold hoki m-bottom-2">
+			  Teléfono:
+			</span>
+			<span class="text-medium deep-sea-green m-bottom-2 info-row">
+			  {{ orderInfo.phone }}
+			</span>
+			<span class="text-medium bold hoki m-bottom-2">
+			  Celular:
+			</span>
+			<span class="text-medium deep-sea-green m-bottom-2 info-row">
+			  {{ orderInfo.cellphone }}
+			</span>
+			<span class="text-medium bold hoki m-bottom-2">
+			  E-mail:
+			</span>
+			<span class="text-medium deep-sea-green m-bottom-2">
+			  {{ orderInfo.email }}
+			</span>
+		  </div>
+		</div>
+	  </div>
+	  <h6 class="title-medium deep-sea-green m-bottom-6 bold row middle">
+		Seguimiento del pedido
+		<img src="/o/mkpl-order-detail/icons/ic_exclamation.svg" alt="" class="m-left-2 tooltip-icon" aria-hidden="true">
+	  </h6>
+	  <div class="traking-content width-100 m-bottom-8">
+		order-tracking
+		<!-- TODO
+		<order-tracking [currentState]="currentState" [data]="states" [trackingDisable]="trackingDisable"></order-tracking>
+		-->
+	  </div>
+	  spare-parts-list
+	  <!-- TODO
+	  <spare-parts-list [orderStatus]="orderInfo.status" [spareParts]="orderInfo.products" (updateStatus)="getOrders()" class="width-100">
+	  </spare-parts-list>
+	  -->
+	</div>
 </div>
+  

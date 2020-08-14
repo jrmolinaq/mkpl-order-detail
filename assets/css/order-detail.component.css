@@ -1,0 +1,39 @@
+.screen-container {
+  margin: 0 auto;
+  max-width: 1135px;
+  width: 100%;
+}
+
+.info-container {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.back-arrow {
+  font-size: 27px;
+}
+
+.info-row {
+  border-bottom: 1px solid #F5F6FB;
+  padding-bottom: 8px;
+}
+
+.info-card {
+  background-color: #FFF;
+  border: 2px solid #F5F6FB;
+  border-radius: 12px;
+  padding: 24px 32px 26px;
+}
+
+.traking-content {
+  background-color: #FFF;
+  border: 2px solid #F5F6FB;
+  border-radius: 12px;
+  padding: 15px 30px;
+}
+
+.tooltip-icon {
+  height: 20px;
+  width: 20px;
+}

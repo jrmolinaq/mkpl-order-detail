@@ -10,6 +10,8 @@
 @import './commons/_status.css';
 @import './icons.css';
 
+@import './order-detail.component.css';
+
 html,
 body {
   height: 100%;
