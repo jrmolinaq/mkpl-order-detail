@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { OrderTrackingComponent } from './tracking.component';
 
 import { FormatDatePipe } from './pipes/format-date.pipe';
 
@@ -16,6 +17,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 	],
 	declarations: [
 		AppComponent,
+		OrderTrackingComponent,
 		FormatDatePipe
 	],
 	entryComponents: [AppComponent],

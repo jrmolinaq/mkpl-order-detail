@@ -1,0 +1,7 @@
+<ul class="row stepper-container space-around" #stepperRef>
+  <li class="stepper column center" *ngFor="let item of config">
+    <input type="checkbox" [id]="item.id" class="stepper-checkbox" [ngClass]="item.class" />
+    <label class="stepper-indicator row middle2 center m-bottom-3" [attr.for]="item.id"></label>
+    <span class="text-normal gray" [ngClass]="item.textClass">{{item.text}}</span>
+  </li>
+</ul>
