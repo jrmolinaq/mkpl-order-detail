@@ -1,0 +1,137 @@
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr repeat(2, 1fr) 2fr 1fr;
+  grid-template-rows: 50px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.table-content {
+  background-color: #FFF;
+  width: 100%;
+}
+
+.provider-info {
+  align-items: center;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 2fr repeat(2, 1fr) 2fr 1fr;
+  grid-template-rows: 50px;
+  padding: 0 10px;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+.provider-info:hover {
+  background-color: #E3E8EB;
+  border-radius: 8px;
+  box-shadow: 10px 10px 24px -12px rgba(0, 0, 0, 0.35);
+}
+
+.disabled:hover {
+  background-color: #FFF;
+  box-shadow: inherit;
+}
+
+.spare-part-counter {
+  background-color: #E7ECEF;
+  border-radius: 12px;
+  height: 56px;
+  padding: 18px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.confirm-parts-modal {
+  max-width: 100%;
+  width: 560px;
+}
+
+.confirm-parts-header {
+  background-color: #F8F8F8;
+  padding: 36px 74px;
+}
+
+.confirm-parts-content {
+  margin: 36px 16px 36px 36px;
+  max-height: 350px;
+  overflow-y: scroll;
+  padding-right: 20px;
+}
+.confirm-parts-content > :not(:last-child) {
+  border-bottom: 1px solid #F5F6FB;
+}
+
+.confirm-parts-footer {
+  padding: 0 36px 36px;
+}
+
+.success-header {
+  background-color: #F8F8F8;
+  height: 252px;
+}
+
+.success-content {
+  padding: 36px;
+  width: 560px;
+}
+
+.dispatch-direction {
+  background-color: #FFF;
+  padding: 36px 32px;
+}
+
+.success-image {
+  height: 182px;
+  width: 194px;
+}
+
+.checkbox {
+  display: none;
+}
+.checkbox ~ label {
+  background-color: #FFF;
+  border: 1px solid #0D4D64;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 18px;
+  position: relative;
+  transition: background-color 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99);
+  width: 18px;
+}
+.checkbox ~ label::before {
+  background: url(/o/mkpl-order-detail/icons/tick.svg) no-repeat center/contain;
+  content: "";
+  height: 13px;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  transform: scale(0);
+  transition: transform 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99);
+  width: 13px;
+}
+.checkbox:checked ~ label {
+  background-color: #0D4D64;
+}
+.checkbox:checked ~ label::before {
+  transform: scale(1);
+}
+
+.disabled-checkbox ~ label {
+  cursor: inherit;
+}
+
+.purcharse-container {
+  background-color: #FFF;
+  border-radius: 0 0 12px 12px;
+  border-top: 2px solid #F5F6FB;
+  padding: 24px 32px 26px;
+}
+
+.text-row {
+  padding-left: 10px;
+}
+
+.loader {
+  margin: auto;
+  width: 120px;
+}

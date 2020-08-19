@@ -4,9 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { InputControlComponent } from './input-control.component';
+import { ModalComponent } from './modal.component';
 import { OrderTrackingComponent } from './tracking.component';
+import { SparePartsListComponent } from './spare-parts-list.component';
 
 import { FormatDatePipe } from './pipes/format-date.pipe';
+import { ShortLargeStringsPipe } from './pipes/short-large-strings.pipe';
 
 @NgModule({
 	imports: [
@@ -17,12 +21,19 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 	],
 	declarations: [
 		AppComponent,
+		InputControlComponent,
+		ModalComponent,
 		OrderTrackingComponent,
-		FormatDatePipe
+		SparePartsListComponent,
+		FormatDatePipe,
+		ShortLargeStringsPipe
 	],
 	entryComponents: [AppComponent],
 	bootstrap: [], // Don't bootstrap any component statically (see ngDoBootstrap() below)
-	providers: [FormatDatePipe],
+	providers: [
+		FormatDatePipe,
+		ShortLargeStringsPipe
+	],
 })
 export class AppModule {
 	// Avoid bootstraping any component statically because we need to attach to

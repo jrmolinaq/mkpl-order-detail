@@ -1,0 +1,158 @@
+<div class="column start">
+  <h3 class="title-small bold deep-sea-green m-bottom-6">
+    Lista de repuestos
+  </h3>
+  <ng-container *ngIf="isLoadingDispatch; else partsList">
+    <img class="loader" src="/o/mkpl-order-detail/icons/Eclipse-1s-200px.gif" alt="loader">
+  </ng-container>
+  <ng-template #partsList>
+    <div class="width-100 m-bottom-9">
+      <div class="table-header">
+        <div class="row middle" *ngFor="let header of tableInfo">
+          <input class="checkbox" type="checkbox" id="header-checkbox"
+            *ngIf="header.checkBox && canAcceptOrDispatchOrder" [checked]="checkAll"
+            (change)="onCheckAll()"
+            [disabled]="orderStatus !== orderStates.ASSIGNED && orderStatus !== orderStates.ACCEPTED && orderStatus !== orderStates.DISPATCHING"
+            [ngClass]="{'disabled-checkbox': orderStatus !== orderStates.ASSIGNED && orderStatus !== orderStates.ACCEPTED && orderStatus !== orderStates.DISPATCHING}">
+          <label class="m-right-2" for="header-checkbox"></label>
+          <h5 class="title-small-poppins bold deep-sea-green">
+            {{ header.label }}
+          </h5>
+        </div>
+      </div>
+      <span class="text-big hoki spare-part-counter m-bottom-1" *ngIf="selectedSpareParts.length">
+        Se han seleccionado <span class="text-big hoki bold">{{ selectedSpareParts.length }}</span>
+        elementos de esta tabla
+      </span>
+      <div class="table-content column">
+        <div class="m-bottom-2 provider-info"
+          [ngClass]="{'disabled': sparePart.status !== orderStates.ASSIGNED && sparePart.status !== orderStates.ACCEPTED && sparePart.status !== orderStates.DISPATCHING}"
+          *ngFor="let sparePart of spareParts">
+          <div class="row middle">
+            <input *ngIf="canAcceptOrDispatchOrder" class="checkbox"
+              [ngClass]="{'disabled-checkbox': sparePart.status !== orderStates.ASSIGNED && sparePart.status !== orderStates.ACCEPTED && sparePart.status !== orderStates.DISPATCHING}"
+              type="checkbox" [id]="sparePart.id" [checked]="isChechked(sparePart)"
+              [disabled]="sparePart.status !== orderStates.ASSIGNED && sparePart.status !== orderStates.ACCEPTED && sparePart.status !== orderStates.DISPATCHING"
+              (change)="onCheck(sparePart.id, sparePart.status)">
+            <label class="m-right-2" [for]="sparePart.id"></label>
+            <span class="text-normal bold "
+              [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart.reference | shortLargeStrings }}</span>
+          </div>
+          <span class="text-normal text-row"
+            [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart.name | shortLargeStrings: 30 }}</span>
+          <span class="text-normal text-row"
+            [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart.amount }}</span>
+          <span class="text-normal text-row"
+            [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart.quality  }}</span>
+          <span class="text-normal text-row"
+            [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart?.estimatedDelivery | date: 'dd/MM/yyyy' || '-'  }}</span>
+          <span class="text-normal text-row row middle center chip"
+            [ngClass]="[states[sparePart.status]?.class, sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green']">{{ states[sparePart.status]?.text }}</span>
+        </div>
+      </div>
+      <div class="purcharse-container row middle">
+        <img src="/o/mkpl-order-detail/icons/purcharse-order.svg" alt="Orden de compra">
+        <button type="button" class="link m-left-2" (click)="openPurcharseOrder()">
+          Ver la orden de compra</button>
+        <p *ngIf="purcharseOrderError" class="text-error m-left-4">{{purcharseOrderError}}</p>
+      </div>
+    </div>
+    <div class="column width-100 dispatch-direction"
+      *ngIf="(orderStatus === orderStates.ACCEPTED || orderStatus === orderStates.DISPATCHING) && canAcceptOrDispatchOrder && selectedSparePartsTrigger === orderStates.DISPATCHING">
+      <span class="text-big bold tiber m-bottom-9">
+        Ubicación de tu pedido
+      </span>
+      <form class="column" [formGroup]="form" (ngSubmit)="dispatchOrder()">
+        <div class="row m-bottom-9" formGroupName="dispatchInfo">
+          <app-input-control classContainer="medium-input" formControlName="guideNumber"
+            label="Número de guía. Ejm (12345678911)" id="guideNumber" class="m-right-4">
+          </app-input-control>
+          <app-input-control classContainer="big-input" formControlName="commentary" label="Comentario"
+            id="commentary">
+          </app-input-control>
+        </div>
+        <button class="self-end button-primary"
+          [disabled]="form.invalid || !selectedSpareParts.length || isLoadingDispatch" type="submit">
+          Despachar el pedido
+        </button>
+      </form>
+    </div>
+  </ng-template>
+  <button type="button"
+    *ngIf="canAcceptOrDispatchOrder && selectedSparePartsTrigger === orderStates.ASSIGNED"
+    class=" self-end button-primary" (click)="openModal('confirm-spare-parts')"
+    [disabled]="!selectedSpareParts.length">
+    Aceptar el pedido
+  </button>
+</div>
+
+<modal class="modal-hidden" id="confirm-spare-parts" [applyPadding]="false">
+  <div class="column confirm-parts-modal">
+    <div class="column center confirm-parts-header">
+      <span class="title-medium bold tiber m-bottom-4">
+        Confirmación del pedido
+      </span>
+      <span class="text-center text-big deep-sea-green">
+        Esta es la lista de repuestos que has seleccionado para aceptar el pedido. ¿Deseas confirmar
+        los repuestos?
+      </span>
+    </div>
+    <div class="column center confirm-parts-content">
+      <div class="row space-between m-bottom-4 width-100" *ngFor="let selectedPart of checkedParts">
+        <div class="column">
+          <span class="text-big deep-sea-green m-bottom-2">Ref. {{ selectedPart.reference | shortLargeStrings: 35 }}</span>
+          <span class="text-big bold deep-sea-green m-bottom-2">{{ selectedPart.name | shortLargeStrings: 35 }}</span>
+        </div>
+        <div class="column">
+          <span class="text-big deep-sea-green m-bottom-2">Cantidad: {{ selectedPart.amount }}</span>
+          <span class="text-big deep-sea-green">Calidad: {{ selectedPart.quality }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row width-100 end confirm-parts-footer">
+      <button type="button" class="button-secondary m-right-4"
+        (click)="closeModal('confirm-spare-parts')">
+        Cancelar
+      </button>
+      <button type="button" class="button-primary" (click)="confirmOrder()">
+        Confirmar repuestos
+      </button>
+    </div>
+  </div>
+</modal>
+
+
+<modal class="modal-hidden" id="success-order-modal" [applyPadding]="false">
+  <div class="column center confirm-parts-header">
+    <img class="success-image" src="/o/mkpl-order-detail/icons/order-success.png">
+  </div>
+  <div class="column center success-content">
+    <span class="title-medium bold tiber m-bottom-4">
+      ¡ Pedido aceptado !
+    </span>
+    <span class="text-center text-big deep-sea-green m-bottom-8">
+      Solo queda seleccionar los repuestos para su despacho y esperar la confirmación de recepción
+      por parte del taller.
+    </span>
+    <button type="button" class="button-primary" (click)="finishConfirm()">
+      Entendido
+    </button>
+  </div>
+</modal>
+
+<modal class="modal-hidden" id="success-dispatch-modal" [applyPadding]="false" (closeModal)="finishDispatch()">
+  <div class="column center confirm-parts-header">
+    <img class="success-image" src="/o/mkpl-order-detail/icons/truck.png">
+  </div>
+  <div class="column center success-content">
+    <span class="title-medium bold tiber m-bottom-4">
+      ¡ Pedido despachado !
+    </span>
+    <span class="text-center text-big deep-sea-green m-bottom-8">
+      Ahora solo queda esperar la confirmación de recepción por parte del taller.
+    </span>
+    <button type="button" class="button-primary" (click)="finishDispatch()">
+      Entendido
+    </button>
+  </div>
+</modal>

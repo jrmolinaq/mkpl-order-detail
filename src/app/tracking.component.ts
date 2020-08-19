@@ -12,7 +12,7 @@ export class OrderTrackingComponent implements OnInit, OnChanges, AfterViewInit 
   @Input() data: { id: string, text: string }[];
   @Input() currentState: { index: number, linePercent: string };
   @Input() trackingDisable: boolean;
-  @ViewChild('stepperRef', {static: true}) containerRef: ElementRef;
+  @ViewChild('stepperRef', {static: false}) containerRef: ElementRef;
   config: any[] = [];
 
   ngOnInit() {

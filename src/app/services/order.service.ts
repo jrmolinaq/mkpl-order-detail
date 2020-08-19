@@ -84,7 +84,18 @@ export class OrderService {
   // TODO borrar dummy
   getOrder2(id: any) {
 
-    let products: any[] = [];
+  let p1 = {status: ORDER_STATES.ASSIGNED, id: 101, reference: 'ABC123456', name: 'producto 1', amount: 2, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-31'};
+  let p2 = {status: ORDER_STATES.ASSIGNED, id: 102, reference: 'ABC234567', name: 'producto 2', amount: 1, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-30'};
+  let p3 = {status: ORDER_STATES.ASSIGNED, id: 103, reference: 'ABC345678', name: 'producto 3', amount: 3, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-31'};
+  let p4 = {status: ORDER_STATES.ASSIGNED, id: 104, reference: 'ABC456789', name: 'producto 4', amount: 2, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-30'};
+  let p5 = {status: ORDER_STATES.ASSIGNED, id: 105, reference: 'ABC567890', name: 'producto 5', amount: 1, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-31'};
+    
+    let products: any[] = [p1, p2, p3, p4, p5];
     
     let orderInfo = {noticeNumber: 521, noticeDate: '2020-07-31', subsidiaryName: 'Sucursal 1', plate: 'ABC123', brand: 'Mazda', 
                      line: '2 sedán', vin: '123456789', workshopName: 'Taller prueba', coverage: 'abc', status: ORDER_STATES.ASSIGNED, 
@@ -92,5 +103,25 @@ export class OrderService {
                      products: products};
 
     return orderInfo;
+  }
+
+  // TODO borrar dummy
+  acceptOrder2(id: any, body: any): any {
+    
+  let p1 = {status: ORDER_STATES.ASSIGNED, id: 101, reference: 'ABC123456', name: 'producto 1', amount: 2, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-31'};
+  let p2 = {status: ORDER_STATES.ASSIGNED, id: 102, reference: 'ABC234567', name: 'producto 2', amount: 1, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-30'};
+  let p3 = {status: ORDER_STATES.ASSIGNED, id: 103, reference: 'ABC345678', name: 'producto 3', amount: 3, 
+    quality: 'GENUINE', estimatedDelivery: '2020-07-31'};
+  
+  let products: any[] = [p1, p2, p3];
+
+    return products;
+  }
+  
+  // TODO borrar dummy
+  dispatchOrder2(id: any, body: any) {
+    return '';
   }
 }
