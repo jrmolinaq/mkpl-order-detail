@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+// TODO: imports comentados
 //import { ActivatedRoute } from '@angular/router';
 //import { ROLES } from './../../../../../../../../constants/auth';
-//import { pluck } from 'rxjs/operators';
-// TODO: imports comentados
+import { pluck } from 'rxjs/operators';
 
 import { FormService } from './services/form.service';
 import { ModalService } from './services/modal.service';
@@ -124,9 +124,9 @@ export class SparePartsListComponent implements OnInit {
     const selectedSpareParts = this.selectedSpareParts.map(elem => elem.id);
     this.modalService.close('confirm-spare-parts');
 
-    /* TODO llamado a servicio
+    // TODO llamado a servicio
     this.orderService.acceptOrder(
-      this.route.snapshot.paramMap.get('id'),
+      this.getURLParameter("id") ,
       { product_order_ids: selectedSpareParts }
     ).subscribe(data => {
       this.spareParts = data.products;
@@ -135,14 +135,14 @@ export class SparePartsListComponent implements OnInit {
       this.spareParts = this.spareParts.map(elem => ({ ...elem, checked: false }));
       this.updateStatus.emit(true);
     });
-    */
 
-    // TODO llamado servicio dummy
+    /* TODO llamado servicio dummy
     this.spareParts = this.orderService.acceptOrder2(this.getURLParameter("id"), { product_order_ids: selectedSpareParts } );
     this.modalService.open('success-order-modal');
     this.checkAll = false;
     this.spareParts = this.spareParts.map(elem => ({ ...elem, checked: false }));
     this.updateStatus.emit(true);
+    */
 
     for (const item of this.selectedSpareParts) {
       for (const elem of this.spareParts) {
@@ -175,19 +175,19 @@ export class SparePartsListComponent implements OnInit {
     
     this.isLoadingDispatch = true;
     
-    /* TODO llamado a servicio
+    // TODO llamado a servicio
     this.orderService.dispatchOrder(orderId, body).subscribe(() => {
       this.modalService.open('success-dispatch-modal');
       this.checkAll = false;
       this.isLoadingDispatch = false;
     });
-    */
 
-    // TODO servicio dummy
+   /* TODO servicio dummy
    this.orderService.dispatchOrder2(orderId, body);
    this.modalService.open('success-dispatch-modal');
    this.checkAll = false;
    this.isLoadingDispatch = false;
+   */
 
     this.selectedSparePartsTrigger = 'disabled';
   }
@@ -200,10 +200,10 @@ export class SparePartsListComponent implements OnInit {
   openPurcharseOrder() {
     this.purcharseOrderError = null;
 
-    // TODO eemplazo  const orderId = this.route.snapshot.paramMap.get('id');
+    // TODO reemplazo  const orderId = this.route.snapshot.paramMap.get('id');
     const orderId = this.getURLParameter("id");
 
-    /* TODO llamado a servicio
+    // TODO llamado a servicio
     this.purcharseOrderService.getPurcharseOrderPDF(orderId)
       .pipe(pluck('url'))
       .subscribe(url => {
@@ -212,10 +212,9 @@ export class SparePartsListComponent implements OnInit {
       error => {
         this.purcharseOrderError = error;
       });
-    */
 
     // TODO servicio dummy
-    this.purcharseOrderService.getPurcharseOrderPDF2();
+    // this.purcharseOrderService.getPurcharseOrderPDF2();
   }
   
 	// this.getURLParameter("id")

@@ -11,7 +11,7 @@ export class PurcharseOrderService {
   // TODO Service
   getPurcharseOrderPDF(orderId: string): Observable<PreSignedURL> {
     const params = new HttpParams().set('orderId', orderId);
-    return this.httpClient.get<PreSignedURL>(`rutaEndpoint/sell-order/pre-signed-s3-url`, { params })
+    return this.httpClient.get<PreSignedURL>(`http://localhost:8080/o/NotificationCompraDigitalPortlet/api/sellorder/presigneds3url`, { params })
       .pipe(
         catchError((httpError: HttpErrorResponse) => {
           if (httpError.status === 404) {

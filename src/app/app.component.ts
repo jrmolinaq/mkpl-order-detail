@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
 	}
 
 	getOrders() {
-	  /* TODO service
+	  // TODO service
 	  this.orderService
-		.getOrder(this.route.snapshot.paramMap.get('id'))
+		.getOrder(this.getURLParameter("id"))
 		.subscribe((data) => {
 		  this.orderInfo = data;
 		  const conditions =
@@ -45,8 +45,7 @@ export class AppComponent implements OnInit {
 		  }
 		  this.trackingDisable = conditions;
 		});
-		*/
-
+/*
 	  this.orderInfo = this.orderService.getOrder2(this.getURLParameter("id"));
 	  const conditions =
 	    this.orderInfo.status === ORDER_STATES.ASSIGNED ||
@@ -55,6 +54,7 @@ export class AppComponent implements OnInit {
 	    this.configCurrentState(this.orderInfo.status);
 	  }
 	  this.trackingDisable = conditions;
+*/
 	}
   
 	configCurrentState(state: string) {
