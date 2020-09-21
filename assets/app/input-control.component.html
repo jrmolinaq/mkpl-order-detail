@@ -1,4 +1,4 @@
-<div class="input-text-container column" [ngClass]="classContainer">
+<div class="input-text-container column2" [ngClass]="classContainer">
   <input [id]="id" class="input-text" [name]="id" type="text" [(ngModel)]="value" autocomplete="off" [disabled]="disabled"
     (ngModelChange)="onChange()"
     [ngClass]="{ error: control.invalid && control.touched, valid: value }" (blur)="markAsTouched()"

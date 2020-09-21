@@ -1,56 +1,56 @@
-.column {
+.column2 {
   display: flex;
   flex-direction: column;
 }
-.column.start {
+.column2.start {
   float: none;
 }
-.column.column-div {
+.column2.column-div {
   float: none;
 }
-.column.top {
+.column2.top {
   justify-content: flex-start;
 }
-.column.middle {
+.column2.middle {
   justify-content: center;
 }
-.column.bottom {
+.column2.bottom {
   justify-content: flex-end;
 }
-.column.space-between {
+.column2.space-between {
   justify-content: space-between;
 }
-.column.space-around {
+.column2.space-around {
   justify-content: space-around;
 }
-.column.start {
+.column2.start {
   align-items: flex-start;
 }
-.column.baseline {
+.column2.baseline {
   align-items: baseline;
 }
-.column.center {
+.column2.center {
   align-items: center;
 }
-.column.end {
+.column2.end {
   align-items: flex-end;
 }
-.column.stretch {
+.column2.stretch {
   align-items: stretch;
 }
-.column .self-start {
+.column2 .self-start {
   align-self: flex-start;
 }
-.column .self-center {
+.column2 .self-center {
   align-self: center;
 }
-.column .self-end {
+.column2 .self-end {
   align-self: flex-end;
 }
-.column .self-stretch {
+.column2 .self-stretch {
   align-self: stretch;
 }
-.column.space-evenly {
+.column2.space-evenly {
   justify-content: space-evenly;
 }
 
@@ -77,60 +77,60 @@
   background-position-y: 5px;
 }
 
-.row {
+.row2 {
   display: flex;
   flex-direction: row;
 }
-.row.top {
+.row2.top {
   align-items: flex-start;
 }
-.row.middle {
+.row2.middle {
   align-items: center;
   margin-right: 0px;
   margin-left: 0px;
   border: none;
   background: none;
 }
-.row.bottom {
+.row2.bottom {
   align-items: flex-end;
 }
-.row.baseline {
+.row2.baseline {
   align-items: baseline;
 }
-.row.start {
+.row2.start {
   justify-content: flex-start;
 }
-.row.center {
+.row2.center {
   justify-content: center;
 }
-.row.end {
+.row2.end {
   justify-content: flex-end;
 }
-.row.space-between {
+.row2.space-between {
   justify-content: space-between;
 }
-.row.space-around {
+.row2.space-around {
   justify-content: space-around;
 }
-.row.wrap {
+.row2.wrap {
   flex-wrap: wrap;
 }
-.row.reverse {
+.row2.reverse {
   flex-direction: row-reverse;
 }
-.row .self-top {
+.row2 .self-top {
   align-self: flex-start;
 }
-.row .self-center {
+.row2 .self-center {
   align-self: center;
 }
-.row .self-middle {
+.row2 .self-middle {
   align-self: center;
 }
-.row .self-bottom {
+.row2 .self-bottom {
   align-self: flex-end;
 }
-.row .self-stretch {
+.row2 .self-stretch {
   align-self: stretch;
 }
 

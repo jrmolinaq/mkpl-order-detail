@@ -1,4 +1,4 @@
-<div class="column start">
+<div class="column2 start">
   <h3 class="title-small bold deep-sea-green m-bottom-6">
     Lista de repuestos
   </h3>
@@ -8,7 +8,7 @@
   <ng-template #partsList>
     <div class="width-100 m-bottom-9">
       <div class="table-header">
-        <div class="row middle" *ngFor="let header of tableInfo">
+        <div class="row2 middle" *ngFor="let header of tableInfo">
           <input class="checkbox" type="checkbox" id="header-checkbox"
             *ngIf="header.checkBox && canAcceptOrDispatchOrder" [checked]="checkAll"
             (change)="onCheckAll()"
@@ -24,11 +24,11 @@
         Se han seleccionado <span class="text-big hoki bold">{{ selectedSpareParts.length }}</span>
         elementos de esta tabla
       </span>
-      <div class="table-content column">
+      <div class="table-content column2">
         <div class="m-bottom-2 provider-info"
           [ngClass]="{'disabled': sparePart.status !== orderStates.ASSIGNED && sparePart.status !== orderStates.ACCEPTED && sparePart.status !== orderStates.DISPATCHING}"
           *ngFor="let sparePart of spareParts">
-          <div class="row middle">
+          <div class="row2 middle">
             <input *ngIf="canAcceptOrDispatchOrder" class="checkbox"
               [ngClass]="{'disabled-checkbox': sparePart.status !== orderStates.ASSIGNED && sparePart.status !== orderStates.ACCEPTED && sparePart.status !== orderStates.DISPATCHING}"
               type="checkbox" [id]="sparePart.id" [checked]="isChechked(sparePart)"
@@ -46,24 +46,24 @@
             [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart.quality  }}</span>
           <span class="text-normal text-row"
             [ngClass]="sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green'">{{ sparePart?.estimatedDelivery | date: 'dd/MM/yyyy' || '-'  }}</span>
-          <span class="text-normal text-row row middle center chip"
+          <span class="text-normal text-row row2 middle center chip"
             [ngClass]="[states[sparePart.status]?.class, sparePart.status === orderStates.REJECTED ? 'hoki' : 'deep-sea-green']">{{ states[sparePart.status]?.text }}</span>
         </div>
       </div>
-      <div class="purcharse-container row middle">
+      <div class="purcharse-container row2 middle">
         <img src="/o/mkpl-order-detail/icons/purcharse-order.svg" alt="Orden de compra">
         <button type="button" class="link m-left-2" (click)="openPurcharseOrder()">
           Ver la orden de compra</button>
         <p *ngIf="purcharseOrderError" class="text-error m-left-4">{{purcharseOrderError}}</p>
       </div>
     </div>
-    <div class="column width-100 dispatch-direction"
+    <div class="column2 width-100 dispatch-direction"
       *ngIf="(orderStatus === orderStates.ACCEPTED || orderStatus === orderStates.DISPATCHING) && canAcceptOrDispatchOrder && selectedSparePartsTrigger === orderStates.DISPATCHING">
       <span class="text-big bold tiber m-bottom-9">
         Ubicación de tu pedido
       </span>
-      <form class="column" [formGroup]="form" (ngSubmit)="dispatchOrder()">
-        <div class="row m-bottom-9" formGroupName="dispatchInfo">
+      <form class="column2" [formGroup]="form" (ngSubmit)="dispatchOrder()">
+        <div class="row2 m-bottom-9" formGroupName="dispatchInfo">
           <app-input-control classContainer="medium-input" formControlName="guideNumber"
             label="Número de guía. Ejm (12345678911)" id="guideNumber" class="m-right-4">
           </app-input-control>
@@ -87,8 +87,8 @@
 </div>
 
 <modal class="modal-hidden" id="confirm-spare-parts" [applyPadding]="false">
-  <div class="column confirm-parts-modal">
-    <div class="column center confirm-parts-header">
+  <div class="column2 confirm-parts-modal">
+    <div class="column2 center confirm-parts-header">
       <span class="title-medium bold tiber m-bottom-4">
         Confirmación del pedido
       </span>
@@ -97,19 +97,19 @@
         los repuestos?
       </span>
     </div>
-    <div class="column center confirm-parts-content">
-      <div class="row space-between m-bottom-4 width-100" *ngFor="let selectedPart of checkedParts">
-        <div class="column">
+    <div class="column2 center confirm-parts-content">
+      <div class="row2 space-between m-bottom-4 width-100" *ngFor="let selectedPart of checkedParts">
+        <div class="column2">
           <span class="text-big deep-sea-green m-bottom-2">Ref. {{ selectedPart.reference | shortLargeStrings: 35 }}</span>
           <span class="text-big bold deep-sea-green m-bottom-2">{{ selectedPart.name | shortLargeStrings: 35 }}</span>
         </div>
-        <div class="column">
+        <div class="column2">
           <span class="text-big deep-sea-green m-bottom-2">Cantidad: {{ selectedPart.amount }}</span>
           <span class="text-big deep-sea-green">Calidad: {{ selectedPart.quality }}</span>
         </div>
       </div>
     </div>
-    <div class="row width-100 end confirm-parts-footer">
+    <div class="row2 width-100 end confirm-parts-footer">
       <button type="button" class="button-secondary m-right-4"
         (click)="closeModal('confirm-spare-parts')">
         Cancelar
@@ -123,10 +123,10 @@
 
 
 <modal class="modal-hidden" id="success-order-modal" [applyPadding]="false">
-  <div class="column center confirm-parts-header">
+  <div class="column2 center confirm-parts-header">
     <img class="success-image" src="/o/mkpl-order-detail/icons/order-success.png">
   </div>
-  <div class="column center success-content">
+  <div class="column2 center success-content">
     <span class="title-medium bold tiber m-bottom-4">
       ¡ Pedido aceptado !
     </span>
@@ -141,10 +141,10 @@
 </modal>
 
 <modal class="modal-hidden" id="success-dispatch-modal" [applyPadding]="false" (closeModal)="finishDispatch()">
-  <div class="column center confirm-parts-header">
+  <div class="column2 center confirm-parts-header">
     <img class="success-image" src="/o/mkpl-order-detail/icons/truck.png">
   </div>
-  <div class="column center success-content">
+  <div class="column2 center success-content">
     <span class="title-medium bold tiber m-bottom-4">
       ¡ Pedido despachado !
     </span>

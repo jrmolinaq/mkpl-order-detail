@@ -83,7 +83,7 @@ export class OrderService {
 
 
       ////////////////////////////////////////////
-      
+      /*
       console.log('*****');
       
       const params = new HttpParams().set('url', "test-inventario.xlsx").set('id_subsidiary', "1");
@@ -95,10 +95,8 @@ export class OrderService {
       .subscribe(
         res => console.log('***** res ', res, ' --- ', res.message)
       );
-      
-      
+      */
       ////////////////////////////////////////////
-      
       
       
     return  Math.random() >= 0.5? [oc1, oc2, oc3]: [];
