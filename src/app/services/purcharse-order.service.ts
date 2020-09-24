@@ -8,7 +8,6 @@ import { PreSignedURL } from '../interfaces/pre-signed-url.interface';
 export class PurcharseOrderService {
   constructor(private httpClient: HttpClient) { }
 
-  // TODO Service
   getPurcharseOrderPDF(orderId: string): Observable<PreSignedURL> {
     const params = new HttpParams().set('orderId', orderId);
     return this.httpClient.get<PreSignedURL>(`http://localhost:8080/o/NotificationCompraDigitalPortlet/api/sellorder/presigneds3url`, { params })
@@ -22,10 +21,5 @@ export class PurcharseOrderService {
           return throwError('Sucedio un error inesperado.');
         })
       );
-  }
-  
-  // TODO borrar dummy
-  getPurcharseOrderPDF2(){
-    return '';
   }
 }

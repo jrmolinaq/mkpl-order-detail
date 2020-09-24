@@ -32,8 +32,7 @@ export class AppComponent implements OnInit {
 	}
 
 	getOrders() {
-	  // TODO service
-	  /*this.orderService
+	 this.orderService
 		.getOrder(this.getURLParameter("id"))
 		.subscribe((data) => {
 		  this.orderInfo = data;
@@ -44,17 +43,7 @@ export class AppComponent implements OnInit {
 			this.configCurrentState(this.orderInfo.status);
 		  }
 		  this.trackingDisable = conditions;
-		});*/
-
-	  this.orderInfo = this.orderService.getOrder2(this.getURLParameter("id"));
-	  const conditions =
-	    this.orderInfo.status === ORDER_STATES.ASSIGNED ||
-	    this.orderInfo.status === ORDER_STATES.REJECTED;
-	  if (!conditions) {
-	    this.configCurrentState(this.orderInfo.status);
-	  }
-	  this.trackingDisable = conditions;
-
+		});
 	}
   
 	configCurrentState(state: string) {

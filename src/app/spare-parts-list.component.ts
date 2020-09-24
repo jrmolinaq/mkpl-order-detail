@@ -136,14 +136,6 @@ export class SparePartsListComponent implements OnInit {
       this.updateStatus.emit(true);
     });
 
-    /* TODO llamado servicio dummy
-    this.spareParts = this.orderService.acceptOrder2(this.getURLParameter("id"), { product_order_ids: selectedSpareParts } );
-    this.modalService.open('success-order-modal');
-    this.checkAll = false;
-    this.spareParts = this.spareParts.map(elem => ({ ...elem, checked: false }));
-    this.updateStatus.emit(true);
-    */
-
     for (const item of this.selectedSpareParts) {
       for (const elem of this.spareParts) {
         if (elem.id === item.id) {
@@ -181,13 +173,6 @@ export class SparePartsListComponent implements OnInit {
       this.checkAll = false;
       this.isLoadingDispatch = false;
     });
-
-   /* TODO servicio dummy
-   this.orderService.dispatchOrder2(orderId, body);
-   this.modalService.open('success-dispatch-modal');
-   this.checkAll = false;
-   this.isLoadingDispatch = false;
-   */
 
     this.selectedSparePartsTrigger = 'disabled';
   }
