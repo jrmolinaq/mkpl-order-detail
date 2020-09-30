@@ -7,9 +7,9 @@
   </ng-container>
   <ng-template #partsList>
     <div class="width-100 m-bottom-9">
-      <div class="table-header">
+      <div class="table-header-spl2">
         <div class="row2 middle" *ngFor="let header of tableInfo">
-          <input class="checkbox" type="checkbox" id="header-checkbox"
+          <input class="checkbox-spl2" type="checkbox" id="header-checkbox"
             *ngIf="header.checkBox && canAcceptOrDispatchOrder" [checked]="checkAll"
             (change)="onCheckAll()"
             [disabled]="orderStatus !== orderStates.ASSIGNED && orderStatus !== orderStates.ACCEPTED && orderStatus !== orderStates.DISPATCHING"

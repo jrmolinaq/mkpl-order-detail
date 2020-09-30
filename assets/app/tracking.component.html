@@ -1,4 +1,4 @@
-<ul class="row2 stepper-container space-around" #stepperRef>
+<ul class="row2 stepper-container-bar space-around" #stepperRef>
   <li class="stepper column2 center" *ngFor="let item of config">
     <input type="checkbox" [id]="item.id" class="stepper-checkbox" [ngClass]="item.class" />
     <label class="stepper-indicator row2 middle2 center m-bottom-3" [attr.for]="item.id"></label>

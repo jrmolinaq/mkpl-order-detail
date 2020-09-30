@@ -10,7 +10,7 @@ export class PurcharseOrderService {
 
   getPurcharseOrderPDF(orderId: string): Observable<PreSignedURL> {
     const params = new HttpParams().set('orderId', orderId);
-    return this.httpClient.get<PreSignedURL>(`http://localhost:8080/o/NotificationCompraDigitalPortlet/api/sellorder/presigneds3url`, { params })
+    return this.httpClient.get<PreSignedURL>(`/o/NotificationCompraDigitalPortlet/api/sellorder/presigneds3url`, { params })
       .pipe(
         catchError((httpError: HttpErrorResponse) => {
           if (httpError.status === 404) {
